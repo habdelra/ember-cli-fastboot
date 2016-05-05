@@ -36,8 +36,9 @@ module.exports = {
   included: function(app) {
     patchEmberApp(app);
 
-    // We serve the index.html from fastboot-dist, so this has to apply to both builds
-    app.options.storeConfigInMeta = false;
+    if (this.app.options.__is_building_fastboot__) {
+      app.options.storeConfigInMeta = false;
+    }
   },
 
   /**
